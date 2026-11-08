@@ -14,7 +14,7 @@ Cloudflare's Durable Objects free quota per account is only enough to support on
 
 Click the button below to deploy this Worker with Cloudflare:
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/outlook84/cf-hysteria-realm)
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/tunooazad1a/cf-hysteria-realm)
 
 The deploy page will clone the repository, create the Worker, ask for required secrets, and deploy to `workers.dev`.
 
