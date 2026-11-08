@@ -58,7 +58,7 @@ export class SingleRealm extends DurableObject<Env> {
   async fetch(request: Request): Promise<Response> {
     const route = parseRoute(new URL(request.url).pathname, request.method);
     if (!route) {
-      return errorResponse(404, "not_found", "unknown path");
+      return errorResponse(404, "404", "404");
     }
     if (route.kind === "badRequest") {
       return errorResponse(400, "bad_request", route.message);
@@ -74,7 +74,7 @@ export class SingleRealm extends DurableObject<Env> {
         route.realmId.length,
         this.env.REALM_ID.length,
       );
-      return errorResponse(404, "realm_not_found", "realm not found");
+      return errorResponse(404, "祭司打洞失败", "大洞被监管打了");
     }
     if (!this.env.REALM_TOKEN) {
       return errorResponse(500, "bad_request", "REALM_TOKEN is not configured");
@@ -270,7 +270,7 @@ export class SingleRealm extends DurableObject<Env> {
     const session = await this.getSession();
     if (!session || session.realmId !== realmId) {
       this.debug("connect rejected realm=%s session_present=%s", realmId, session ? "true" : "false");
-      return errorResponse(404, "realm_not_found", "realm not registered");
+      return errorResponse(404, "老师我反钻了", "404");
     }
     this.debug("connect requested realm=%s session=%s clientAddresses=%d", realmId, session.id, body.addresses.length);
     if (this.pending.size >= MAX_PENDING_ATTEMPTS || this.pending.has(body.nonce)) {
@@ -304,7 +304,7 @@ export class SingleRealm extends DurableObject<Env> {
     const addresses = await freshAddresses;
     if (addresses === null) {
       this.debug("connect canceled realm=%s session=%s", realmId, session.id);
-      return errorResponse(404, "realm_not_found", "realm not registered");
+      return errorResponse(404, "老师我反钻了", "404");
     }
     this.debug("connect returning realm=%s session=%s freshAddresses=%d", realmId, session.id, addresses.length);
     return jsonResponse(200, {
